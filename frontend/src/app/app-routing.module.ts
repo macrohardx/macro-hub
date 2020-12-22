@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [];
+import { UIRouterModule } from '@uirouter/angular';
+import { AppStates } from './infrastructure/app.states';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [UIRouterModule.forRoot({
+    states: AppStates,
+    useHash: false,
+    otherwise: { state: 'home' }
+  })],
+  exports: [UIRouterModule]
 })
 export class AppRoutingModule { }

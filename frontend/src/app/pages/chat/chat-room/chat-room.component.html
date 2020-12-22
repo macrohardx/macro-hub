@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="main__chat">
+        <button (click)="login()">LOGIN (DELETE)</button>
+        <button (click)="getRooms()">GET ROOMS (DELETE)</button>
+        <ng-scrollbar #scrollable track="all" visibility="hover">
+            <div class="main__post mb-3" *ngFor="let msg of messages">
+                <div class="post__avatar"></div>
+                <div class="post__content">
+                    <div class="post__name">{{msg.username}}</div>
+                    <div class="post__timestamp mx-3">at {{msg.timestamp | date : 'dd/MM/yyy HH:mm' }}</div>
+                    <div class="post__message" [innerHTML]="msg.text"></div>
+                </div>
+            </div>
+        </ng-scrollbar>
+    </div>
+    <button (click)="sendMessage()">SEND</button>
+    <div class="main__input">
+        <div class="input__container py-2">
+            <textarea class="input__message" [(ngModel)]="message" (keyup)="expandTextarea($event)"></textarea>
+        </div>
+    </div>
+</div>

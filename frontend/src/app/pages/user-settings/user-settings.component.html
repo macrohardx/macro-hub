@@ -1,0 +1,93 @@
+<h2>SETTINGS</h2>
+
+<div class="rounded-dark-box p-5">
+  <div class="media align-items-center mb-5">
+    <div class="text-center pr-4">
+      <a (click)="openModal(modalUserPic)" class="user-avatar">
+        <p class="avatar-change-hover font-sm">CHANGE AVATAR</p>
+        <img *ngIf="user.id" src="{{profilePicUrl}}/{{user.id}}?v={{version}}" alt="User Avatar" class="h-100">
+      </a>
+    </div>
+    <div class="media-body h-100">
+      <h3>
+        <span>{{ user.displayName }} </span>
+        <span class="text-muted font-sm">({{user.hostname}})</span>
+      </h3>
+    </div>
+  </div>
+
+  <form #nameForm="ngForm" (ngSubmit)="saveProfile()">
+    <div class="mb-2">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="user.username" required name="username"
+          #username="ngModel" />
+        <mat-error *ngIf="username.invalid">Username is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="mb-2">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Display Name</mat-label>
+        <input matInput placeholder="Display Name" [(ngModel)]="user.displayName" required name="displayName"
+          #displayName="ngModel" />
+        <mat-error *ngIf="displayName.invalid">Display Name is required</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!nameForm.form.valid" type="submit">Save</button>
+  </form>
+</div>
+
+<div class="rounded-dark-box p-5 mt-5">
+  <h4>Password Management</h4>
+  <form #passwordTipForm="ngForm" (submit)="savePasswordTip()">
+    <p>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Password Tip Question</mat-label>
+        <input matInput placeholder="Name of my first pet" [(ngModel)]="user.passwordTipQuestion" #passwordQuestion="ngModel" name="passwordTipQuestion" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Password Tip Answer</mat-label>
+        <input matInput placeholder="Foo Bar Baz Qux" [(ngModel)]="user.passwordTipAnswer" #passwordAnswer="ngModel" name="passwordTipAnswer"/>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" [disabled]="!passwordTipForm.form.valid" type="submit">Save</button>
+  </form>
+
+  <mat-divider class="my-5"></mat-divider>
+
+  <form #passForm="ngForm" (submit)="changePassword()">
+    <p>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Current Password</mat-label>
+        <input matInput type="password" placeholder="*****" required name="currentConfirmation"/>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>New Password</mat-label>
+        <input matInput type="password" placeholder="*****" required name="newPassword"/>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Password Confirmation</mat-label>
+        <input matInput type="password" placeholder="*****" required name="passwordConfirmation"/>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" [disabled]="!passForm.form.valid" type="submit">Change Password</button>
+  </form>
+</div>
+
+<ng-template #modalUserPic let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-image-cropper (imageCropped)="imageCropped($event)"></app-image-cropper>
+  </div>
+</ng-template>

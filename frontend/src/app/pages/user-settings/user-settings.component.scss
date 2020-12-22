@@ -1,0 +1,24 @@
+.user-avatar {
+  height: 6rem;
+  display: block;
+  position: relative;
+  width: 6rem;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.avatar-change-hover {
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.user-avatar:hover .avatar-change-hover {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background: transparentize($color: #000000, $amount: 0.4);
+  color: white;
+}

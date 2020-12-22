@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/prebuilt-themes/pink-bluegrey';
+html,
+body {
+    height: 100%;
+    background: #303030;
+    color: white;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.ng-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.cropper-move {
+    border-radius: 100%;
+}
+
+.rounded-dark-box {
+    background: transparentize($color: #000000, $amount: 0.6);
+    border-radius: 10px;
+}
+
+.rounded-light-box {
+    background: transparentize($color: #ffffff, $amount: 0.6);
+    border-radius: 10px;
+}
+
+.font-sm {
+    font-size: 0.8rem;
+}
+
+// Move to helpers.scss
+@mixin spacing-helpers($prop, $className, $sizeName, $size) {
+    .#{$className}r-#{$sizeName},.#{$className}-#{$sizeName}, .#{$className}x-#{$sizeName} { #{$prop}-right: #{$size} !important; }
+    .#{$className}l-#{$sizeName},.#{$className}-#{$sizeName}, .#{$className}x-#{$sizeName} { #{$prop}-left: #{$size} !important; }
+    .#{$className}t-#{$sizeName},.#{$className}-#{$sizeName}, .#{$className}y-#{$sizeName} { #{$prop}-top: #{$size} !important; }
+    .#{$className}b-#{$sizeName},.#{$className}-#{$sizeName}, .#{$className}y-#{$sizeName} { #{$prop}-bottom: #{$size} !important; }
+}
+
+$spacings: (1: 0.3rem, 2: 0.5rem, 3: 0.8rem, 4: 1rem, 5: 1.4rem);
+@each $num, $size in $spacings {
+    @include spacing-helpers("padding", "p", $num, $size);
+    @include spacing-helpers("margin", "m", $num, $size);
+}

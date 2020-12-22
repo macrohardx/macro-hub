@@ -1,0 +1,66 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+}
+
+.main__post {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.post__avatar {
+    background: #7288da;
+    border-radius: 50%;
+    min-height: 3rem;
+    min-width: 3rem;
+    margin-right: 1rem;
+}
+
+.post__name {
+    display: inline;
+}
+
+.post__timestamp {
+    color: rgba(240, 244, 255, 0.25);
+    display: inline;
+    font-size: 0.75rem;
+}
+
+.post__message {
+    color: rgba(240, 244, 255, 0.75);
+    word-break: break-word;
+}
+
+.main__chat {
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.main__input {
+    padding: 0px 0.3rem;
+    border-radius: 3px;
+}
+.input__container {
+    display: flex;
+    align-items: center;
+    background: #42444c;
+    height: 100%;
+    padding: 0 1rem;
+    position: relative;
+    height: 38px;
+}
+.input__message {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 0.25rem;
+    color: #f0f4ff;
+    outline: none;
+    position: absolute;
+    bottom: 10px;
+    height: 24px;
+}
